@@ -7,10 +7,16 @@ Return Value:           Returns the Number variable which holds the generated nu
 ********************************************************************************/
 
 int rollDice(){
-    int number;
+    /*int number;
     int min = 1,max = 6;
 
     srand(time(NULL));
     number = (rand() % (max-min+1)) + min;
-    return number;
+    return number;*/
+    
+    int rollDice(void){
+    int die;
+    die = rand()%7;
+    return("%d\n", die);
+}
 }
