@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 #include "rollDice.h"
+#define  WON 1
+#define  LOOSE 0
+
 
 /*
 * Title: Assignment #1 - Dice Game
@@ -21,7 +25,50 @@
  * Version: 1 
  * Author: XYZ 
  * *****************************************************************************/ 
-int main(){
 
-    printf("Random Number in between 1-6 is: %d\n",rollDice());
+int rollDice(void){
+    int die;
+    die = rand()%7;
+    return("%d\n", die);
 }
+
+header(void){
+    printf("------------------------------------------------------------------------------------------------------------------\n");
+    printf("%15s %15s %15s %20s %25s ", "ROLL NUM", "DICE#1", "DICE#2", "TOTAL ROLL", "POINT MATCH\n");
+    printf("------------------------------------------------------------------------------------------------------------------\n");
+}
+
+int firstPlay(void){
+   int firstRoll = rollDice();
+   int secondRoll = rollDice();
+
+    if((&firstRoll + &secondRoll) == 7 || (&firstRoll + &secondRoll) == 11 ) {
+        return WON;
+    } if((&firstRoll + &secondRoll) == 2 || (&firstRoll + &secondRoll) == 3  || (&firstRoll + &secondRoll) == 12 ) {
+        return LOOSE;
+    }
+}
+
+int main(){
+    char roll[6];
+    int firstRoll;
+    int secondRoll;
+    printf("ROLL THE DICE [ENTER], to QUIT enter [q]: ");
+    scanf("%s", &roll);
+    
+    firstRoll = rollDice();
+    secondRoll = rollDice();
+
+    do{
+    if (strcmp(&roll, "enter") == 0){
+       printf(firstPlay()); 
+        scanf("%s", &roll);
+    } else if (strcmp(&roll, "q") == 0) {
+        printf("Exiting..\n");
+    } else {
+        printf("Error... You must Enter either 'ENTER' or 'q\n");
+    }
+    }while(&roll != "q");
+}
+
+
